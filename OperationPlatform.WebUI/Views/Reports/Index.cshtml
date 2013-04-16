@@ -1,0 +1,39 @@
+﻿@{
+    ViewBag.Title = "Reports";
+}
+<style type="text/css">
+th.ui-th-column div  
+{  
+    /* jqGrid columns name wrap  */  
+    white-space:normal !important;  
+    height:auto !important;  
+    padding:0px;  
+}  
+.gridfloat
+{
+    float: left;
+}
+.gridClear
+{
+    clear: both;
+}
+</style>
+<script src="@Url.Content("~/Scripts/reportsGrid.js")" type="text/javascript"></script> 
+<script type="text/javascript">
+    $("#main-nav li a.selected").parent().parent().show(); // show selected menu
+    $('#device').addClass('selected');
+</script> 
+<h2>Network Performance Reports</h2>
+<div>
+    <label>日期:(例2013-02)</label>
+    <input id="txtSearch" style="width: 108px;" type="text" />
+    <input id="btSubmit" type="submit" class="actionButtons" style="cursor: pointer;"  value="查询" />
+</div>
+<div id="result" style="width: 100%; overflow: scroll;">
+    <table id="gridAvailability"></table>
+    <table id="gridCPUUsed"></table>
+    <table id="gridMemoryUsed"></table> 
+    <table id="gridDeviceDiskUsed"></table>
+    <table id="gridDeviceNetwork"></table>        
+</div>
+

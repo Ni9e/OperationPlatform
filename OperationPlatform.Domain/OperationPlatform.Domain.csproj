@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{88591D9D-9DBA-4880-A047-FFA640A67B22}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>OperationPlatform.Domain</RootNamespace>
+    <AssemblyName>OperationPlatform.Domain</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net40\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Moq">
+      <HintPath>..\packages\Moq.4.0.10827\lib\NET40\Moq.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject">
+      <HintPath>..\packages\Ninject.3.0.1.10\lib\net40\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.Mvc, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Abstract\IReports.cs" />
+    <Compile Include="Abstract\IOrderProcessor.cs" />
+    <Compile Include="Abstract\IProductsRepository.cs" />
+    <Compile Include="Concrete\EFDbContext.cs" />
+    <Compile Include="Concrete\EFReports.cs" />
+    <Compile Include="Concrete\EFProductRepository.cs" />
+    <Compile Include="Concrete\EmailOrderProcessor.cs" />
+    <Compile Include="Entities\Cart.cs" />
+    <Compile Include="Entities\ReportsTables.cs" />
+    <Compile Include="Entities\Product.cs" />
+    <Compile Include="Entities\ShippingDetails.cs" />
+    <Compile Include="Migrations\201303011532577_AddDateTime.cs" />
+    <Compile Include="Migrations\201303011532577_AddDateTime.Designer.cs">
+      <DependentUpon>201303011532577_AddDateTime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201303011559392_AddDateTime1.cs" />
+    <Compile Include="Migrations\201303011559392_AddDateTime1.Designer.cs">
+      <DependentUpon>201303011559392_AddDateTime1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201303011653524_AddDateTime2.cs" />
+    <Compile Include="Migrations\201303011653524_AddDateTime2.Designer.cs">
+      <DependentUpon>201303011653524_AddDateTime2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201303011727292_AddDateTime3.cs" />
+    <Compile Include="Migrations\201303011727292_AddDateTime3.Designer.cs">
+      <DependentUpon>201303011727292_AddDateTime3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201303040128329_AddDeviceDiskUsed.cs" />
+    <Compile Include="Migrations\201303040128329_AddDeviceDiskUsed.Designer.cs">
+      <DependentUpon>201303040128329_AddDeviceDiskUsed.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201303011532577_AddDateTime.resx">
+      <DependentUpon>201303011532577_AddDateTime.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201303011559392_AddDateTime1.resx">
+      <DependentUpon>201303011559392_AddDateTime1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201303011653524_AddDateTime2.resx">
+      <DependentUpon>201303011653524_AddDateTime2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201303011727292_AddDateTime3.resx">
+      <DependentUpon>201303011727292_AddDateTime3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201303040128329_AddDeviceDiskUsed.resx">
+      <DependentUpon>201303040128329_AddDeviceDiskUsed.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,23 @@
+﻿@model IEnumerable<string>
+
+@{
+    Layout = null;
+}
+<script src="@Url.Content("~/Scripts/Menu.js")" type="text/javascript"></script>
+<ul id="main-nav">
+    <li>@Html.RouteLink("Home", new { controller = "Product", action = "List" }, new { @class = "nav-top-item list1" })</li>
+    <li><a href="#" class="nav-top-item list1">Reports</a>
+        <ul>
+            <li>@Html.RouteLink("设备性能报表", new { controller = "Reports", action = "Index" }, new { @class = "list2", id="device"})</li>                        
+        </ul>
+    </li>
+</ul>
+@*@foreach (var link in Model)
+{
+    @Html.RouteLink(link.Trim(), 
+        new { controller = "Product", 
+              action = "List", 
+              category = link.Trim(),
+              page = 1 },
+        new { @class = link.Trim() == ViewBag.SelectedCategory ? "selected" : null })       
+}*@
