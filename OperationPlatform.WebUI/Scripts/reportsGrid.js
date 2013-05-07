@@ -1,4 +1,5 @@
 ﻿// 报表Action和id设置
+// device
 var loadUrlMemoryUsed = "GetMemoryUsedInformation";
 var loadUrlAvailability = "GetAvailability";
 var loadUrlCPUUsed = "GetCPUUsed";
@@ -10,6 +11,7 @@ var gridAvailability = "#gridAvailability";
 var gridCPUUsed = "#gridCPUUsed";
 var gridDeviceNetwork = "#gridDeviceNetwork";
 var gridDeviceDiskUsed = "#gridDeviceDiskUsed"
+/*-------------------------------------------------------------------*/
 
 function addCSS(id) {
     $(id).closest("div.ui-jqgrid-view")
@@ -28,18 +30,18 @@ function deviceNetworkCellattr(rowId, val, rawObject, cm, rdata) {
 };
 
 $(function () {
-    configGrid();   
+    configGrid();
 
     // 报表Title设置
     addCSS(gridMemoryUsed);
     addCSS(gridAvailability);
     addCSS(gridCPUUsed);
     addCSS(gridDeviceNetwork);
-    addCSS(gridDeviceDiskUsed);
+    addCSS(gridDeviceDiskUsed);    
 
     $("#result").hide();
 
-    $("#btSubmit").click(function () {        
+    $("#btSubmit").click(function () {
         var para = $("#txtSearch").val();
 
         // 报表request url设置
@@ -47,7 +49,7 @@ $(function () {
         var queryUrlAvailability = loadUrlAvailability + "?datetime=" + para;
         var queryUrlCPUUsed = loadUrlCPUUsed + "?datetime=" + para;
         var queryUrlDeviceNetwork = loadUrlDeviceNetwork + "?datetime=" + para;
-        var queryUrlDeviceDiskUsed = loadUrlDeviceDiskUsed + "?datetime=" + para;
+        var queryUrlDeviceDiskUsed = loadUrlDeviceDiskUsed + "?datetime=" + para;        
 
         // 报表查询
         $(gridMemoryUsed).jqGrid('setGridParam', { url: queryUrlMemoryUsed }).trigger("reloadGrid");
@@ -55,13 +57,13 @@ $(function () {
         $(gridCPUUsed).jqGrid('setGridParam', { url: queryUrlCPUUsed }).trigger("reloadGrid");
         $(gridDeviceNetwork).jqGrid('setGridParam', { url: queryUrlDeviceNetwork }).trigger("reloadGrid");
         $(gridDeviceDiskUsed).jqGrid('setGridParam', { url: queryUrlDeviceDiskUsed }).trigger("reloadGrid");
-
+        
         // 报表布局设置
         $("#gbox_" + gridAvailability.substr(1)).addClass("gridfloat");
         $("#gbox_" + gridCPUUsed.substr(1)).addClass("gridClear");
         $("#gbox_" + gridMemoryUsed.substr(1)).addClass("gridfloat");
         $("#gbox_" + gridDeviceDiskUsed.substr(1)).addClass("gridfloat");
-        $("#gbox_" + gridDeviceNetwork.substr(1)).addClass("gridfloat");
+        $("#gbox_" + gridDeviceNetwork.substr(1)).addClass("gridfloat");       
 
         $("#result").show();
     });

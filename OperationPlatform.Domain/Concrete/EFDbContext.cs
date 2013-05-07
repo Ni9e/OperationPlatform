@@ -21,7 +21,11 @@ namespace OperationPlatform.Domain.Concrete
         public DbSet<Availability> Availabilitys { get; set; }
         public DbSet<CPUUsed> CPUUseds { get; set; }
         public DbSet<DeviceNetwork> DeviceNetworks { get; set; }
-        public DbSet<DeviceDiskUsed> DeviceDiskUseds { get; set; }        
+        public DbSet<DeviceDiskUsed> DeviceDiskUseds { get; set; }
+        public DbSet<ApplicationAvailability> ApplicationAvailability { get; set; }
+        public DbSet<ApplicationCPUUsed> ApplicationCPUUseds { get; set; }
+        public DbSet<ApplicationMemoryUsed> ApplicationMemoryUseds { get; set; }
+        public DbSet<ApplicationCurrentStatus> ApplicationCurrentStatus { get; set; }
 
         // fix the model backing the 'EFDbContext' context has changed since the database was created
         //protected override void OnModelCreating(DbModelBuilder modelBuilder)

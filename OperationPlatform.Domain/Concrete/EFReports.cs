@@ -45,6 +45,30 @@ namespace OperationPlatform.Domain.Concrete
                     select p);
         }
 
+        public IEnumerable<ApplicationAvailability> GetApplicationAvailability(string sql, SqlParameter[] parms)
+        {
+            return (from p in db.Database.SqlQuery<ApplicationAvailability>(sql, parms)
+                    select p);
+        }
+
+        public IEnumerable<ApplicationCPUUsed> GetApplicationCPUUsed(string sql, SqlParameter[] parms)
+        {
+            return (from p in db.Database.SqlQuery<ApplicationCPUUsed>(sql, parms)
+                    select p);
+        }
+
+        public IEnumerable<ApplicationMemoryUsed> GetApplicationMemoryUsed(string sql, SqlParameter[] parms)
+        {
+            return (from p in db.Database.SqlQuery<ApplicationMemoryUsed>(sql, parms)
+                    select p);
+        }
+
+        public IEnumerable<ApplicationCurrentStatus> GetApplicationCurrentStatus(string sql, SqlParameter[] parms)
+        {
+            return (from p in db.Database.SqlQuery<ApplicationCurrentStatus>(sql, parms)
+                    select p);
+        }
+
         #endregion
 
         #region Tables
@@ -71,6 +95,26 @@ namespace OperationPlatform.Domain.Concrete
         public IEnumerable<DeviceDiskUsed> DeviceDiskUseds
         {
             get { return db.DeviceDiskUseds; }
+        }
+
+        public IEnumerable<ApplicationAvailability> ApplicationAvailability
+        {
+            get { return db.ApplicationAvailability; }
+        }
+
+        public IEnumerable<ApplicationCPUUsed> ApplicationCPUUsed
+        {
+            get { return db.ApplicationCPUUseds; }
+        }
+
+        public IEnumerable<ApplicationMemoryUsed> ApplicationMemoryUsed
+        {
+            get { return db.ApplicationMemoryUseds; }
+        }
+
+        public IEnumerable<ApplicationCurrentStatus> ApplicationCurrentStatus
+        {
+            get { return db.ApplicationCurrentStatus; }
         }
 
         #endregion

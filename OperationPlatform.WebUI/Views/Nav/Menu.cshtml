@@ -6,9 +6,10 @@
 <script src="@Url.Content("~/Scripts/Menu.js")" type="text/javascript"></script>
 <ul id="main-nav">
     <li>@Html.RouteLink("Home", new { controller = "Product", action = "List" }, new { @class = "nav-top-item list1" })</li>
-    <li><a href="#" class="nav-top-item list1">Reports</a>
+    <li><a href="#" class="nav-top-item list1" id="reports">Reports</a>
         <ul>
-            <li>@Html.RouteLink("设备性能报表", new { controller = "Reports", action = "Index" }, new { @class = "list2", id="device"})</li>                        
+            <li>@Html.RouteLink("设备性能报表", new { controller = "Reports", action = "Index" }, new { @class = "list2", id="device"})</li> 
+            <li>@Html.RouteLink("应用性能报表", new { controller = "Reports", action = "ApplicationReports" }, new { @class = "list2", id = "application" })</li>                       
         </ul>
     </li>
 </ul>

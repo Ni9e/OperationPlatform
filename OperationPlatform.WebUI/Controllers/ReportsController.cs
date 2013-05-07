@@ -24,7 +24,12 @@ namespace OperationPlatform.WebUI.Controllers
         {
             reports = repo;
         }
-         
+
+        public ViewResult Index()
+        {
+            return View();
+        }
+
         //parmNames.Length must equal parm.Length
         private SqlParameter[] InitialParams(string[] parmNames, params string[] parm)
         {
@@ -43,7 +48,9 @@ namespace OperationPlatform.WebUI.Controllers
 
             return parms;
         }
-                
+
+        #region Device
+
         [HttpPost]
         public ActionResult GetMemoryUsedInformation(string datetime = "")
         {
@@ -163,16 +170,116 @@ namespace OperationPlatform.WebUI.Controllers
                           }).ToArray();
             var jsonData = new { rows = jqData };
             return Json(jsonData);
-        }
-
-        public ViewResult Index()
-        {
-            return View();
-        }
+        }        
 
         public PartialViewResult DeviceReports()
         {
             return PartialView();
         }
+
+        #endregion
+
+        #region Application
+
+        [HttpPost]
+        public ActionResult GetApplicationAvailability(string datetime = "")
+        {
+            var result = reports.GetApplicationAvailability("exec GetApplicationAvailability @datetime", InitialParams(paramNames, datetime));
+
+            var jqData = (from m in result
+                          select new
+                          {
+                              id = m.NodeID,
+                              cell = new object[]
+                            {
+                                m.NodeName.Trim(),
+                                m.ApplicationName.Trim(),
+                                Math.Round(m.AverangeApplicationAvailability,2).ToString() + "%"                                
+                            }
+
+                          }).ToArray();
+            var jsonData = new { rows = jqData };
+            return Json(jsonData);
+            
+        }
+
+        [HttpPost]
+        public ActionResult GetApplicationCPUUsed(string datetime = "")
+        {
+            var result = reports.GetApplicationCPUUsed("exec GetApplicationCPUUsed @datetime", InitialParams(paramNames, datetime));
+
+            var jqData = (from m in result
+                          select new
+                          {
+                              id = m.NodeID,
+                              cell = new object[]
+                            {
+                                m.NodeName.Trim(),
+                                m.ApplicationName.Trim(),
+                                m.ComponentName.Trim(),
+                                Math.Round(m.AveragePercentCPU,2).ToString() + "%",
+                                Math.Round(m.PeakPercentCPU,2).ToString() + "%"
+                            }
+
+                          }).ToArray();
+            var jsonData = new { rows = jqData };
+            return Json(jsonData);
+
+        }
+
+        [HttpPost]
+        public ActionResult GetApplicationMemoryUsed(string datetime = "")
+        {
+            var result = reports.GetApplicationMemoryUsed("exec GetApplicationMemoryUsed @datetime", InitialParams(paramNames, datetime));
+
+            var jqData = (from m in result
+                          select new
+                          {
+                              id = m.NodeID,
+                              cell = new object[]
+                            {
+                                m.NodeName.Trim(),
+                                m.ApplicationName.Trim(),
+                                m.ComponentName.Trim(),
+                                Math.Round(m.AveragePercentMemory,2).ToString() + "%",
+                                Math.Round(m.PeakPercentMemory,2).ToString() + "%"
+                            }
+
+                          }).ToArray();
+            var jsonData = new { rows = jqData };
+            return Json(jsonData);
+
+        }
+
+        [HttpPost]
+        public ActionResult GetApplicationCurrentStatus(string datetime = "")
+        {
+            var result = reports.GetApplicationCurrentStatus("exec GetApplicationCurrentStatus @datetime", InitialParams(paramNames, datetime));
+
+            var jqData = (from m in result
+                          select new
+                          {
+                              id = m.NodeID,
+                              cell = new object[]
+                            {
+                                m.NodeName.Trim(),
+                                m.ApplicationName.Trim(),
+                                m.ApplicationStatus.Trim(),
+                                m.ComponentName.Trim(), 
+                                m.CompinentStatus.Trim()
+                            }
+
+                          }).ToArray();
+            var jsonData = new { rows = jqData };
+            return Json(jsonData);
+
+        }
+
+        public ViewResult ApplicationReports()
+        {
+            return View();
+        }
+
+        #endregion
     }
 }

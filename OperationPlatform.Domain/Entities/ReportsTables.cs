@@ -7,6 +7,8 @@ using System.ComponentModel.DataAnnotations;
 
 namespace OperationPlatform.Domain.Entities
 {
+
+    #region Device
     public class MemoryUsed
     {
         [Key]
@@ -63,4 +65,55 @@ namespace OperationPlatform.Domain.Entities
         public float PercentDiskSpaceUsed { get; set; }
         public DateTime DateTime { get; set; }
     }
+
+    #endregion
+
+    #region Application
+
+    public class ApplicationAvailability
+    {
+        [Key]
+        public int NodeID { get; set; }
+        public string NodeName { get; set; }
+        public string ApplicationName { get; set; }
+        public float AverangeApplicationAvailability { get; set; }
+        public DateTime DateTime { get; set; }
+    }
+
+    public class ApplicationCPUUsed
+    {
+        [Key]
+        public int NodeID { get; set; }
+        public string NodeName { get; set; }
+        public string ApplicationName { get; set; }
+        public string ComponentName { get; set; }
+        public float AveragePercentCPU { get; set; }
+        public float PeakPercentCPU { get; set; }
+        public DateTime DateTime { get; set; }
+    }
+
+    public class ApplicationMemoryUsed
+    {
+        [Key]
+        public int NodeID { get; set; }
+        public string NodeName { get; set; }
+        public string ApplicationName { get; set; }
+        public string ComponentName { get; set; }
+        public float AveragePercentMemory { get; set; }
+        public float PeakPercentMemory { get; set; }
+        public DateTime DateTime { get; set; }
+    }
+
+    public class ApplicationCurrentStatus
+    {
+        [Key]
+        public int NodeID { get; set; }
+        public string NodeName { get; set; }
+        public string ApplicationName { get; set; }
+        public string ApplicationStatus { get; set; }
+        public string ComponentName { get; set; }
+        public string CompinentStatus { get; set; }        
+    }
+
+    #endregion
 }
