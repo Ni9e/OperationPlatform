@@ -37,9 +37,10 @@ $(function () {
     addCSS(gridAvailability);
     addCSS(gridCPUUsed);
     addCSS(gridDeviceNetwork);
-    addCSS(gridDeviceDiskUsed);    
+    addCSS(gridDeviceDiskUsed);
 
     $("#result").hide();
+    $("#btnExport").hide();
 
     $("#btSubmit").click(function () {
         var para = $("#txtSearch").val();
@@ -63,9 +64,11 @@ $(function () {
         $("#gbox_" + gridCPUUsed.substr(1)).addClass("gridClear");
         $("#gbox_" + gridMemoryUsed.substr(1)).addClass("gridfloat");
         $("#gbox_" + gridDeviceDiskUsed.substr(1)).addClass("gridfloat");
-        $("#gbox_" + gridDeviceNetwork.substr(1)).addClass("gridfloat");       
+        $("#gbox_" + gridDeviceNetwork.substr(1)).addClass("gridfloat");
 
         $("#result").show();
+        $("#btnExport").show();
+        $('.ui-icon.ui-icon-circle-triangle-s').click();
     });
 });
 
@@ -97,7 +100,7 @@ function configGrid() {
         autowidth: false,
         gridModel: true,
         gridNames: true,
-        hiddengrid: true,
+        hiddengrid: false,
         caption: "设备memory使用率"
     });
 
@@ -122,7 +125,7 @@ function configGrid() {
         autowidth: false,
         gridModel: true,
         gridNames: true,
-        hiddengrid: true,
+        hiddengrid: false,
         caption: "设备磁盘使用情况"
     });
 
@@ -145,7 +148,7 @@ function configGrid() {
         autowidth: false,
         gridModel: true,
         gridNames: true,
-        hiddengrid: true,
+        hiddengrid: false,
         caption: "设备Availability"
     });
 
@@ -168,7 +171,7 @@ function configGrid() {
         autowidth: false,
         gridModel: true,
         gridNames: true,
-        hiddengrid: true,
+        hiddengrid: false,
         caption: "设备CPU使用率"
     });
 
@@ -194,7 +197,7 @@ function configGrid() {
         autowidth: false,
         gridModel: true,
         gridNames: true,
-        hiddengrid: true,
+        hiddengrid: false,
         caption: "设备接口网络情况"
     });    
 }    

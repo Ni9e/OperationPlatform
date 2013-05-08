@@ -19,12 +19,32 @@ th.ui-th-column div
 }
 </style>
 <script src="@Url.Content("~/Scripts/reportsGrid.js")" type="text/javascript"></script> 
+<script src="@Url.Content("~/Scripts/exportExcel.js")" type="text/javascript"></script> 
 <script type="text/javascript">
   $("#main-nav li a.selected").parent().parent().show(); // show selected menu
   $('#device').addClass('selected');
   $(function () {
     var r = new Date();
     $("#txtSearch").val(r.toLocaleDateString().substr(0, 6).replace('年', '-'));
+
+    // 初始化表对应的列
+    var jsData =
+    {
+      gridAvailability: new Array("NodeName", "IP_Address", "AvgAvailability"),
+      gridCPUUsed: new Array("NodeName", "AvgLoad", "MaxLoad"),
+      gridMemoryUsed: new Array("NodeName", "AvgMemoryUsed", "MaxMemoryUsed", "TotalMemory", "AvgPercentMemoryUsed"),
+      gridDeviceDiskUsed: new Array("NodeName", "Volume", "DiskSize", "DiskSpaceUsed", "PercentDiskSpaceUsed"),
+      gridDeviceNetwork: new Array("NodeName", "Interface", "AvgReceive", "MaxReceive", "AvgTrans", "MaxTrans")
+    };
+    var tabidArr = new Array($('#gridAvailability')[0], $('#gridCPUUsed')[0], $('#gridMemoryUsed')[0], $('#gridDeviceDiskUsed')[0], $('#gridDeviceNetwork')[0])
+    $("#btnExport").click(function () {
+      if (navigator.userAgent.indexOf("MSIE") > 0) {
+        $('.ui-icon.ui-icon-circle-triangle-s').click();
+        toExcel(tabidArr, jsData, "设备性能监控");
+      } else {
+        alert("请用IE浏览器导出！");
+      }
+    });
   });
     
 </script> 
@@ -33,6 +53,7 @@ th.ui-th-column div
     <label>日期:(例2013-02)</label>
     <input id="txtSearch" style="width: 108px;" type="text" />
     <input id="btSubmit" type="submit" class="actionButtons" style="cursor: pointer;"  value="查询" />
+    <input id="btnExport" type="button" class="actionButtons" value="Export Excel"/> 
 </div>
 <div id="result" style="width: 100%; overflow: scroll;">
     <table id="gridAvailability"></table>

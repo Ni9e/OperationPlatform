@@ -1,4 +1,5 @@
-﻿// 报表Action和id设置
+﻿/// <reference path="jquery-1.9.1-vsdoc.js" />
+// 报表Action和id设置
 // application
 var loadUrlApplicationAvailability = "GetApplicationAvailability";
 var loadUrlApplicationCPUUsed = "GetApplicationCPUUsed";
@@ -30,6 +31,7 @@ $(function () {
     addCSS(gridApplicationCurrentStatus);
 
     $("#result").hide();
+    $("#btnExport").hide();
 
     $("#btSubmit").click(function () {
         var para = $("#txtSearch").val();
@@ -53,6 +55,8 @@ $(function () {
         $("#gbox_" + gridApplicationCurrentStatus.substr(1)).addClass("gridfloat");
 
         $("#result").show();
+        $("#btnExport").show();
+        $('.ui-icon.ui-icon-circle-triangle-s').click();
     });
 });
 
@@ -82,7 +86,7 @@ function configGrid() {
         autowidth: false,
         gridModel: true,
         gridNames: true,
-        hiddengrid: true,
+        hiddengrid: false,
         caption: "应用监控Availability"
     });
 
@@ -107,7 +111,7 @@ function configGrid() {
         autowidth: false,
         gridModel: true,
         gridNames: true,
-        hiddengrid: true,
+        hiddengrid: false,
         caption: "应用CPU使用率"
     });
 
@@ -132,7 +136,7 @@ function configGrid() {
         autowidth: false,
         gridModel: true,
         gridNames: true,
-        hiddengrid: true,
+        hiddengrid: false,
         caption: "应用Memory使用率"
     });
 
@@ -147,7 +151,7 @@ function configGrid() {
                         { name: "ApplicationName", index: "ApplicationName", align: "center", width: "450px" },
                         { name: "ApplicationStatus", index: "ApplicationStatus", align: "center", width: "100px" },
                         { name: "ComponentName", index: "ComponentName", align: "center", width: "300px" },
-                        { name: "ComponentStatus", index: "ComponentStatus", align: "center", width: "100px"} // 最大值大于平均值的30倍
+                        { name: "ComponentStatus", index: "ComponentStatus", align: "center", width: "100px"}
             ],
         height: "100%",
         rowNum: 500,
@@ -157,7 +161,7 @@ function configGrid() {
         autowidth: false,
         gridModel: true,
         gridNames: true,
-        hiddengrid: true,
+        hiddengrid: false,
         caption: "应用当前状态"
     });
 } 

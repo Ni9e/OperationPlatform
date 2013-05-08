@@ -19,6 +19,7 @@ th.ui-th-column div
 }
 </style> 
 <script src="@Url.Content("~/Scripts/ApplicationReports.js")" type="text/javascript"></script> 
+<script src="@Url.Content("~/Scripts/exportExcel.js")" type="text/javascript"></script>
 <script type="text/javascript">
   $(function () {
     $("#reports").addClass('nav-top-item current');
@@ -27,13 +28,32 @@ th.ui-th-column div
 
     var r = new Date();
     $("#txtSearch").val(r.toLocaleDateString().substr(0, 6).replace('年', '-'));
-  });  
+
+    // 初始化表对应的列
+    var jsData =
+    {
+      gridApplicationAvailability: new Array("NodeName", "ApplicationName", "AverangeApplicationAvailability"),
+      gridApplicationCPUUsed: new Array("NodeName", "ApplicationName", "ComponentName", "AveragePercentCPU", "PeakPercentCPU"),
+      gridApplicationMemoryUsed: new Array("NodeName", "ApplicationName", "ComponentName", "AveragePercentMemory", "PeakPercentMemory"),
+      gridApplicationCurrentStatus: new Array("NodeName", "ApplicationName", "ApplicationStatus", "ComponentName", "ComponentStatus")
+    };
+    var tabidArr = new Array($('#gridApplicationAvailability')[0], $('#gridApplicationCPUUsed')[0], $('#gridApplicationMemoryUsed')[0], $('#gridApplicationCurrentStatus')[0])
+    $("#btnExport").click(function () {
+      if (navigator.userAgent.indexOf("MSIE") > 0) {
+        $('.ui-icon.ui-icon-circle-triangle-s').click();
+        toExcel(tabidArr, jsData, "应用组件性能");
+      } else {
+        alert("请用IE浏览器导出！");
+      }
+    });
+  });
 </script>
 <h2>Application Performance Reports</h2>
 <div>
     <label>日期:(例2013-02)</label>
     <input id="txtSearch" style="width: 108px;" type="text" />
-    <input id="btSubmit" type="submit" class="actionButtons" style="cursor: pointer;"  value="查询" />
+    <input id="btSubmit"  type="submit" class="actionButtons" style="cursor: pointer;"  value="查询" />
+    <input id="btnExport" type="button" class="actionButtons" value="Export Excel"/>    
 </div>
 <div id="result" style="width: 100%; overflow: scroll;">
     <table id="gridApplicationAvailability"></table>  
